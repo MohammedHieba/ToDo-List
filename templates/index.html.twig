@@ -34,7 +34,7 @@
             <td>
                 <form class="grow" method="POST" action="{{  path( 'update_task' , {'id':task.id} ) }}" role="form">
                     <input  type="text" class="form-control" placeholder="Your Task" name="title" value="{{ task.title }}">
-                    <button type="submit" class="btn btn btn-primary">Update</button>
+                    <button style="height:35px;" type="submit" class="btn btn btn-primary">Update</button>
                 </form>
                 <a href="{{ path('delete_task', { 'id':task.id}) }}">
                     <button onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger" style="margin-bottom: 20px;" type="submit">Delete</button>
