@@ -36,9 +36,10 @@
                     <input  type="text" class="form-control" placeholder="Your Task" name="title" value="{{ task.title }}">
                     <button type="submit" class="btn btn btn-primary">Update</button>
                 </form>
-                <form action="{{ path( 'delete_task' , {'id':task.id} )  }}" method="delete">
+                <a href="{{ path('delete_task', { 'id':task.id}) }}">
                     <button onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger" style="margin-bottom: 20px;" type="submit">Delete</button>
-                </form>
+                </a>
+
 
             </td>
         </tr>

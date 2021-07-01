@@ -51,8 +51,15 @@ class ToDoListController extends AbstractController
         return $this->redirectToRoute('to_do_list');
     }
 
-//    #[Route('/delete/{id}', name: 'delete_task',methods: ["delete"])]
-//    public function delete(): Response
-//    {
-//    }
+    #[Route('/delete/{id}', name: 'delete_task')]
+    public function delete( Request $request, $id): Response
+    {
+
+        $task=$this->getDoctrine()->getRepository(Task::class)->find($id);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($task);
+        $entityManager->flush();
+        return $this->redirectToRoute('to_do_list');
+
+    }
 }
