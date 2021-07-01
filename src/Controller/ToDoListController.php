@@ -37,15 +37,22 @@ class ToDoListController extends AbstractController
 
     }
 
-    #[Route('/update/{id}', name: 'update_task')]
-    public function update(): Response
+
+    #[Route('/update/{id}', name: 'update_task' , methods: ["POST"])]
+    public function update(Request $request , $id): Response
     {
-        //
+        $title = $request->request->get('title');
+        $task=$this->getDoctrine()->getRepository(Task::class)->find($id);
+        $entityManager = $this->getDoctrine()->getManager();
+        $task->setTitle($title);
+        $entityManager->persist($task);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('to_do_list');
     }
 
-    #[Route('/delete/{id}', name: 'delete_task')]
-    public function delete(): Response
-    {
-        //
-    }
+//    #[Route('/delete/{id}', name: 'delete_task',methods: ["delete"])]
+//    public function delete(): Response
+//    {
+//    }
 }
